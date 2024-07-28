@@ -7,12 +7,53 @@
 // ignore_for_file: type=lint
 // coverage:ignore-file
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i1;
+part of 'app_router.dart';
 
-abstract class $AppRouter extends _i1.RootStackRouter {
-  $AppRouter({super.navigatorKey});
+abstract class _$AppRouter extends RootStackRouter {
+  // ignore: unused_element
+  _$AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i1.PageFactory> pagesMap = {};
+  final Map<String, PageFactory> pagesMap = {
+    SplashRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SplashScreen(),
+      );
+    },
+    VehicleListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const VehicleListScreen(),
+      );
+    },
+  };
+}
+
+/// generated route for
+/// [SplashScreen]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [VehicleListScreen]
+class VehicleListRoute extends PageRouteInfo<void> {
+  const VehicleListRoute({List<PageRouteInfo>? children})
+      : super(
+          VehicleListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'VehicleListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
