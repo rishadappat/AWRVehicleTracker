@@ -44,6 +44,7 @@ dependencies:
   json_annotation:
   shared_preferences:
   state_notifier:
+  firebase_core: ^2.24.2
 
 dev_dependencies:
   auto_route_generator:

@@ -19,7 +19,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () async {
-      final route = const VehicleListScreen() as PageRouteInfo;
+      const route = VehicleListRoute();
       AutoRouter.of(context).pushAndPopUntil(
         route,
         predicate: (_) => false,

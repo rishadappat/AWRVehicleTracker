@@ -9,8 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @RoutePage()
 class VehicleListScreen  extends ConsumerStatefulWidget {
-  static const String routeName = 'DashboardScreen';
-
+  static const String routeName = '/vehicleListScreen';
   const VehicleListScreen({super.key});
 
   @override
@@ -68,6 +67,7 @@ class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
       }),
     );
     return Scaffold(
+      backgroundColor: Colors.amber,
       appBar: AppBar(
         title: isSearchActive
             ? TextField(

@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "20133892266",
+    "firebase_url": "https://awrvehicletracking-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "awrvehicletracking",
+    "storage_bucket": "awrvehicletracking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20133892266:android:92961ddff5b6ea0dd640d3",
+        "android_client_info": {
+          "package_name": "com.example.awr_vehicle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-4RGrOlXIiGoQJFqSm_ZFDQzkdGAa_Xc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
