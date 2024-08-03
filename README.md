@@ -1,4 +1,4 @@
-# awr_vehicle_tracker
+# AWR Vehicle Tracker
 
 A new Flutter project.
 
