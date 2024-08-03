@@ -16,6 +16,7 @@ Future<void> mainCommon() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle.light.copyWith(
       statusBarColor: Colors.black,
+      systemNavigationBarColor: Colors.white,
       statusBarBrightness: Brightness.light,
     ),
   );

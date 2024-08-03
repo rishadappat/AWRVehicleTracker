@@ -75,6 +75,7 @@ class AppTheme {
       appBarTheme: const AppBarTheme(
         elevation: 0,
         backgroundColor: AppColors.primary,
+        titleTextStyle: AppTextStyles.h2,
       ),
     );
   }

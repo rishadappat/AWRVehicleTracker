@@ -1,16 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 enum VehicleListConcreteState {
   initial,
   loading,
   loaded,
-  failure,
-  fetchingMore,
-  fetchedAllProducts
+  failure
 }
 
 class VehicleListState extends Equatable {
-  final List<String> productList;
+  final List<QueryDocumentSnapshot<Map<String, dynamic>>> productList;
   final int total;
   final int page;
   final bool hasData;
@@ -38,7 +37,7 @@ class VehicleListState extends Equatable {
   });
 
   VehicleListState copyWith({
-    List<String>? productList,
+    List<QueryDocumentSnapshot<Map<String, dynamic>>>? productList,
     int? total,
     int? page,
     bool? hasData,

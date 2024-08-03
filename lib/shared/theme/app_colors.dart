@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   /// App primary color
-  static const Color primary = Color(0xff1DA1F2);
+  static const Color primary = Color(0xff343a40);
 
   /// App secondary color
   static const Color error = Color(0xffFC698C);
@@ -18,4 +18,12 @@ class AppColors {
 
   /// Extra Light grey color
   static const Color extraLightGrey = Color(0xffE1E8ED);
+
+  static const Color darkGrey = Color(0xFF3E3E3E);
+
+  static const Color statusTransit = Color(0xFF005EFF);
+
+  static const Color statusHault = Color(0xFFFC4C42);
+
+  static const Color statusReached = Color(0xFF1E9033);
 }

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:awr_vehicle_tracker/features/vehicle_list/presentation/screen/vehicle_list_screen.dart';
 import 'package:awr_vehicle_tracker/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
