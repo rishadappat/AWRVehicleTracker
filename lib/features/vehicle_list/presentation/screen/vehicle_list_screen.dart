@@ -7,6 +7,7 @@ import 'package:awr_vehicle_tracker/features/vehicle_list/presentation/providers
 import 'package:awr_vehicle_tracker/features/vehicle_list/presentation/screen/children/vehicle_list_item.dart';
 import 'package:awr_vehicle_tracker/routes/app_router.dart';
 import 'package:awr_vehicle_tracker/shared/theme/app_colors.dart';
+import 'package:awr_vehicle_tracker/shared/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -51,7 +52,7 @@ class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
           IconButton(
           icon: const Icon(
             Icons.map_rounded,
-            color: Colors.white,
+            color: AppColors.primary,
           ),
           onPressed: () {
             List<Vehicle> vehicles = [];
