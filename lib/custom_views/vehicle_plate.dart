@@ -20,7 +20,7 @@ class _VehiclePlateState extends State<VehiclePlate> {
         child: Card.outlined(
           elevation: 10,
           color: Colors.white,
-          shape: Shapes.defaultRoundedCorner,
+          shape: defaultRoundedCornerBorder,
           child: Padding(padding: const EdgeInsets.all(10), 
           child: plateParsedValue.length != 3
            ? const Text('Error') : Row(

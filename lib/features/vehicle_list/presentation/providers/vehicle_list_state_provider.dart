@@ -4,5 +4,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final vehicleListNotifierProvider =
     StateNotifierProvider<VehicleListNotifier, VehicleListState>((ref) {
-  return VehicleListNotifier()..fetchProducts();
+  return VehicleListNotifier()..fetchProducts('');
 });

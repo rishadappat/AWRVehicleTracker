@@ -5,6 +5,7 @@ import 'package:awr_vehicle_tracker/features/vehicle_list/data/model/vehicle.dar
 import 'package:awr_vehicle_tracker/features/vehicle_list/presentation/providers/state/vehicle_list_state.dart';
 import 'package:awr_vehicle_tracker/features/vehicle_list/presentation/providers/vehicle_list_state_provider.dart';
 import 'package:awr_vehicle_tracker/features/vehicle_list/presentation/screen/children/vehicle_list_item.dart';
+import 'package:awr_vehicle_tracker/routes/app_router.dart';
 import 'package:awr_vehicle_tracker/shared/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +21,7 @@ class VehicleListScreen extends ConsumerStatefulWidget {
 }
 
 class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
+  Timer? _debounce;
   final scrollController = ScrollController();
   final TextEditingController searchController = TextEditingController();
 
@@ -31,13 +33,12 @@ class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
 
   void fetchVehicles() {
     final notifier = ref.read(vehicleListNotifierProvider.notifier);
-    notifier.fetchProducts();
+    notifier.fetchProducts(searchController.text);
   }
 
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(vehicleListNotifierProvider);
-
     ref.listen(
       vehicleListNotifierProvider.select((value) => value),
       ((VehicleListState? previous, VehicleListState next) {
@@ -46,6 +47,24 @@ class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
     );
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+          icon: const Icon(
+            Icons.map_rounded,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            List<Vehicle> vehicles = [];
+            for (var vehicleObj in state.productList) {
+              vehicles.add(Vehicle.fromJson(vehicleObj.data()));
+            }
+            LiveVehicleViewRoute route = LiveVehicleViewRoute(vehicles: vehicles);
+            AutoRouter.of(context).push(
+              route,
+            );
+          },
+        )
+        ],
         surfaceTintColor: AppColors.white,
         backgroundColor: AppColors.white,
         title: const Text('Dashboard', 
@@ -62,6 +81,7 @@ class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
                       padding: const EdgeInsets.all(10.0),
                       child:  SearchBar(
                         controller: searchController,
+                        onChanged: _onSearchChanged,
                         textInputAction: TextInputAction.search,
                         padding: const WidgetStatePropertyAll<EdgeInsets>(
                   EdgeInsets.only(left: 16.0)),
@@ -102,5 +122,18 @@ class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
                   ),
                 ),
     );
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  _onSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      ref.read(vehicleListNotifierProvider.notifier).fetchProducts(query);
+    });
   }
 }

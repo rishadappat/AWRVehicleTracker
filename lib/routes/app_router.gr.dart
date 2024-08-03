@@ -9,25 +9,50 @@
 
 part of 'app_router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
+/// generated route for
+/// [LiveVehicleViewScreen]
+class LiveVehicleViewRoute extends PageRouteInfo<LiveVehicleViewRouteArgs> {
+  LiveVehicleViewRoute({
+    required List<Vehicle> vehicles,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          LiveVehicleViewRoute.name,
+          args: LiveVehicleViewRouteArgs(
+            vehicles: vehicles,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'LiveVehicleViewRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<LiveVehicleViewRouteArgs>();
+      return LiveVehicleViewScreen(
+        args.vehicles,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class LiveVehicleViewRouteArgs {
+  const LiveVehicleViewRouteArgs({
+    required this.vehicles,
+    this.key,
+  });
+
+  final List<Vehicle> vehicles;
+
+  final Key? key;
 
   @override
-  final Map<String, PageFactory> pagesMap = {
-    SplashRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SplashScreen(),
-      );
-    },
-    VehicleListRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const VehicleListScreen(),
-      );
-    },
-  };
+  String toString() {
+    return 'LiveVehicleViewRouteArgs{vehicles: $vehicles, key: $key}';
+  }
 }
 
 /// generated route for
@@ -41,7 +66,12 @@ class SplashRoute extends PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SplashScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -55,5 +85,10 @@ class VehicleListRoute extends PageRouteInfo<void> {
 
   static const String name = 'VehicleListRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const VehicleListScreen();
+    },
+  );
 }

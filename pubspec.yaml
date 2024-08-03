@@ -46,6 +46,11 @@ dependencies:
   state_notifier:
   firebase_core: 
   cloud_firestore:
+  open_route_service:
+  flutter_map:
+  latlong2:
+  flutter_map_cancellable_tile_provider:
+
 
 dev_dependencies:
   auto_route_generator:
@@ -75,6 +80,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/plates/
+    - assets/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
