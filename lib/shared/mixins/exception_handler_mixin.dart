@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:awr_vehicle_tracker/shared/data/remote/remote.dart';
 import 'package:awr_vehicle_tracker/shared/domain/models/either.dart';
-import 'package:awr_vehicle_tracker/shared/domain/models/response.dart' as response;
+import 'package:awr_vehicle_tracker/shared/domain/models/response.dart'
+    as response;
 import 'package:awr_vehicle_tracker/shared/exceptions/http_exception.dart';
 import 'package:dio/dio.dart';
 
@@ -27,14 +28,14 @@ mixin ExceptionHandlerMixin on NetworkService {
       int statusCode = 0;
       log(e.runtimeType.toString());
       switch (e.runtimeType) {
-        case SocketException:
+        case SocketException _:
           e as SocketException;
           message = 'Unable to connect to the server.';
           statusCode = 0;
           identifier = 'Socket Exception ${e.message}\n at  $endpoint';
           break;
 
-        case DioException:
+        case DioException _:
           e as DioException;
           message = e.response?.data?['message'] ?? 'Internal Error occurred';
           statusCode = 1;

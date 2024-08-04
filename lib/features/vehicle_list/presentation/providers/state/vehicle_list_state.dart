@@ -1,5 +1,4 @@
 import 'package:awr_vehicle_tracker/features/vehicle_list/data/model/vehicle.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 enum VehicleListConcreteState { initial, loading, loaded, failure }

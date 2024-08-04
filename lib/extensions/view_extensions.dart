@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:awr_vehicle_tracker/shared/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
