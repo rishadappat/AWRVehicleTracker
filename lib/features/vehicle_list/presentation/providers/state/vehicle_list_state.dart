@@ -1,15 +1,11 @@
+import 'package:awr_vehicle_tracker/features/vehicle_list/data/model/vehicle.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
-enum VehicleListConcreteState {
-  initial,
-  loading,
-  loaded,
-  failure
-}
+enum VehicleListConcreteState { initial, loading, loaded, failure }
 
 class VehicleListState extends Equatable {
-  final List<QueryDocumentSnapshot<Map<String, dynamic>>> productList;
+  final List<Vehicle> vehicleList;
   final int total;
   final int page;
   final bool hasData;
@@ -17,7 +13,7 @@ class VehicleListState extends Equatable {
   final String message;
   final bool isLoading;
   const VehicleListState({
-    this.productList = const [],
+    this.vehicleList = const [],
     this.isLoading = false,
     this.hasData = false,
     this.state = VehicleListConcreteState.initial,
@@ -27,7 +23,7 @@ class VehicleListState extends Equatable {
   });
 
   const VehicleListState.initial({
-    this.productList = const [],
+    this.vehicleList = const [],
     this.total = 0,
     this.page = 0,
     this.isLoading = false,
@@ -37,7 +33,7 @@ class VehicleListState extends Equatable {
   });
 
   VehicleListState copyWith({
-    List<QueryDocumentSnapshot<Map<String, dynamic>>>? productList,
+    List<Vehicle>? vehicleList,
     int? total,
     int? page,
     bool? hasData,
@@ -47,7 +43,7 @@ class VehicleListState extends Equatable {
   }) {
     return VehicleListState(
       isLoading: isLoading ?? this.isLoading,
-      productList: productList ?? this.productList,
+      vehicleList: vehicleList ?? this.vehicleList,
       total: total ?? this.total,
       page: page ?? this.page,
       hasData: hasData ?? this.hasData,
@@ -58,9 +54,9 @@ class VehicleListState extends Equatable {
 
   @override
   String toString() {
-    return 'DashboardState(isLoading:$isLoading, productLength: ${productList.length},total:$total page: $page, hasData: $hasData, state: $state, message: $message)';
+    return 'DashboardState(isLoading:$isLoading, productLength: ${vehicleList.length},total:$total page: $page, hasData: $hasData, state: $state, message: $message)';
   }
 
   @override
-  List<Object?> get props => [productList, page, hasData, state, message];
+  List<Object?> get props => [vehicleList, page, hasData, state, message];
 }

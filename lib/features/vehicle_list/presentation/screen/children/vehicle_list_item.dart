@@ -13,33 +13,38 @@ class VehicleListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(color: Colors.white,
-    elevation: 5,
+    return Card(
+      color: Colors.white,
+      elevation: 5,
       child: InkWell(
         customBorder: defaultRoundedCorner,
         onTap: () {
-            LiveVehicleViewRoute route = LiveVehicleViewRoute(vehicles: List.from([vehicle]));
-            AutoRouter.of(context).push(
-              route,
-            );
+          LiveVehicleViewRoute route = LiveVehicleViewRoute(vehicle: vehicle);
+          AutoRouter.of(context).push(
+            route,
+          );
         },
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Row(
             children: [
-              Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              VehiclePlate(vehiclePlate: vehicle.vehiclePlate),
-                              const SizedBox(height: 15,),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text('${vehicle.vehicleBrand} ${vehicle.vehicleModel}',
-                                style: vehicleBrandTextStyle),
-                              )
-                            ],
-                          ),
-                          const Spacer(),
-                          VehicleStatus(status: vehicle.status)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  VehiclePlate(vehiclePlate: vehicle.vehiclePlate),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                        '${vehicle.vehicleBrand} ${vehicle.vehicleModel}',
+                        style: vehicleBrandTextStyle),
+                  )
+                ],
+              ),
+              const Spacer(),
+              VehicleStatus(status: vehicle.status)
             ],
           ),
         ),

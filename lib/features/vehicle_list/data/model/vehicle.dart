@@ -7,29 +7,29 @@ Vehicle vehicleFromJson(String str) => Vehicle.fromJson(json.decode(str));
 String vehicleToJson(Vehicle data) => json.encode(data.toJson());
 
 class Vehicle {
-    String vehicleBrand;
-    String vehicleColor;
-    String vehiclePlate;
-    String vehicleDriver;
-    VehicleLocation start;
-    String vehicleModel;
-    VehicleLocation end;
-    int status;
-    VehicleLocation currentLocation;
+  String vehicleBrand;
+  String vehicleColor;
+  String vehiclePlate;
+  String vehicleDriver;
+  VehicleLocation start;
+  String vehicleModel;
+  VehicleLocation end;
+  int status;
+  VehicleLocation currentLocation;
 
-    Vehicle({
-        required this.vehicleBrand,
-        required this.vehicleColor,
-        required this.vehiclePlate,
-        required this.vehicleDriver,
-        required this.start,
-        required this.vehicleModel,
-        required this.end,
-        required this.status,
-        required this.currentLocation,
-    });
+  Vehicle({
+    required this.vehicleBrand,
+    required this.vehicleColor,
+    required this.vehiclePlate,
+    required this.vehicleDriver,
+    required this.start,
+    required this.vehicleModel,
+    required this.end,
+    required this.status,
+    required this.currentLocation,
+  });
 
-    factory Vehicle.fromJson(Map<String, dynamic> json) => Vehicle(
+  factory Vehicle.fromJson(Map<String, dynamic> json) => Vehicle(
         vehicleBrand: json["vehicle_brand"],
         vehicleColor: json["vehicle_color"],
         vehiclePlate: json["vehicle_plate"],
@@ -39,9 +39,9 @@ class Vehicle {
         end: VehicleLocation.fromJson(json["end"]),
         status: json["status"],
         currentLocation: VehicleLocation.fromJson(json["current_location"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "vehicle_brand": vehicleBrand,
         "vehicle_color": vehicleColor,
         "vehicle_plate": vehiclePlate,
@@ -51,5 +51,9 @@ class Vehicle {
         "end": end.toJson(),
         "status": status,
         "current_location": currentLocation.toJson(),
-    };
+      };
+
+  String description() {
+    return "$vehicleBrand $vehicleModel\n$vehicleColor\n$vehicleDriver";
+  }
 }

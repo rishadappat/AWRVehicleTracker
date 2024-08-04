@@ -7,10 +7,8 @@ import 'package:awr_vehicle_tracker/features/vehicle_list/presentation/providers
 import 'package:awr_vehicle_tracker/features/vehicle_list/presentation/screen/children/vehicle_list_item.dart';
 import 'package:awr_vehicle_tracker/routes/app_router.dart';
 import 'package:awr_vehicle_tracker/shared/theme/app_colors.dart';
-import 'package:awr_vehicle_tracker/shared/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 
 @RoutePage()
 class VehicleListScreen extends ConsumerStatefulWidget {
@@ -40,38 +38,29 @@ class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(vehicleListNotifierProvider);
-    ref.listen(
-      vehicleListNotifierProvider.select((value) => value),
-      ((VehicleListState? previous, VehicleListState next) {
-        print(next.message);
-      }),
-    );
     return Scaffold(
       appBar: AppBar(
         actions: [
           IconButton(
-          icon: const Icon(
-            Icons.map_rounded,
-            color: AppColors.primary,
-          ),
-          onPressed: () {
-            List<Vehicle> vehicles = [];
-            for (var vehicleObj in state.productList) {
-              vehicles.add(Vehicle.fromJson(vehicleObj.data()));
-            }
-            LiveVehicleViewRoute route = LiveVehicleViewRoute(vehicles: vehicles);
-            AutoRouter.of(context).push(
-              route,
-            );
-          },
-        )
+            icon: const Icon(
+              Icons.map_rounded,
+              color: AppColors.primary,
+            ),
+            onPressed: () {
+              LiveAllVehiclesViewRoute route = const LiveAllVehiclesViewRoute();
+              AutoRouter.of(context).push(
+                route,
+              );
+            },
+          )
         ],
         surfaceTintColor: AppColors.white,
         backgroundColor: AppColors.white,
-        title: const Text('Dashboard', 
-        style: TextStyle(color: AppColors.primary, 
-        fontSize: 30,
-        fontWeight: FontWeight.bold)),
+        title: const Text('Dashboard',
+            style: TextStyle(
+                color: AppColors.primary,
+                fontSize: 30,
+                fontWeight: FontWeight.bold)),
       ),
       body: state.state == VehicleListConcreteState.loading
           ? const Center(child: CircularProgressIndicator())
@@ -80,12 +69,12 @@ class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child:  SearchBar(
+                      child: SearchBar(
                         controller: searchController,
                         onChanged: _onSearchChanged,
                         textInputAction: TextInputAction.search,
                         padding: const WidgetStatePropertyAll<EdgeInsets>(
-                  EdgeInsets.only(left: 16.0)),
+                            EdgeInsets.only(left: 16.0)),
                         hintText: 'Search',
                         leading: const Icon(Icons.search_rounded),
                       ),
@@ -95,14 +84,13 @@ class _VehicleListScreenState extends ConsumerState<VehicleListScreen> {
                         controller: scrollController,
                         child: ListView.builder(
                           controller: scrollController,
-                          itemCount: state.productList.length,
+                          itemCount: state.vehicleList.length,
                           itemBuilder: (context, index) {
-                            Map<String, dynamic> data = state.productList[index].data();
-                            Vehicle vehicle = Vehicle.fromJson(data); 
+                            Vehicle vehicle = state.vehicleList[index];
                             return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                              child: VehicleListItem(vehicle: vehicle)
-                            );
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                child: VehicleListItem(vehicle: vehicle));
                           },
                         ),
                       ),

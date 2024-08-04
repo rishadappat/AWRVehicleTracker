@@ -10,48 +10,67 @@
 part of 'app_router.dart';
 
 /// generated route for
-/// [LiveVehicleViewScreen]
-class LiveVehicleViewRoute extends PageRouteInfo<LiveVehicleViewRouteArgs> {
-  LiveVehicleViewRoute({
-    required List<Vehicle> vehicles,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          LiveVehicleViewRoute.name,
-          args: LiveVehicleViewRouteArgs(
-            vehicles: vehicles,
-            key: key,
-          ),
+/// [LiveAllVehiclesViewScreen]
+class LiveAllVehiclesViewRoute extends PageRouteInfo<void> {
+  const LiveAllVehiclesViewRoute({List<PageRouteInfo>? children})
+      : super(
+          LiveAllVehiclesViewRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'LiveVehicleViewRoute';
+  static const String name = 'LiveAllVehiclesViewRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<LiveVehicleViewRouteArgs>();
-      return LiveVehicleViewScreen(
-        args.vehicles,
+      return const LiveAllVehiclesViewScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [LiveVehicleView]
+class LiveVehicleViewRoute extends PageRouteInfo<LiveVehicleViewArgs> {
+  LiveVehicleViewRoute({
+    Key? key,
+    required Vehicle vehicle,
+    List<PageRouteInfo>? children,
+  }) : super(
+          LiveVehicleViewRoute.name,
+          args: LiveVehicleViewArgs(
+            key: key,
+            vehicle: vehicle,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'LiveVehicleView';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<LiveVehicleViewArgs>();
+      return LiveVehicleView(
         key: args.key,
+        vehicle: args.vehicle,
       );
     },
   );
 }
 
-class LiveVehicleViewRouteArgs {
-  const LiveVehicleViewRouteArgs({
-    required this.vehicles,
+class LiveVehicleViewArgs {
+  const LiveVehicleViewArgs({
     this.key,
+    required this.vehicle,
   });
-
-  final List<Vehicle> vehicles;
 
   final Key? key;
 
+  final Vehicle vehicle;
+
   @override
   String toString() {
-    return 'LiveVehicleViewRouteArgs{vehicles: $vehicles, key: $key}';
+    return 'LiveVehicleViewArgs{key: $key, vehicle: $vehicle}';
   }
 }
 
