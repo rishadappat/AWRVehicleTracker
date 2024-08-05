@@ -68,7 +68,11 @@ class _VehicleMapGoogleMapViewState
 
   void bottomSheetContent(Vehicle vehicle) {
     showModalBottomSheet(
+      isScrollControlled: true,
+      showDragHandle: true,
       context: context,
+      useSafeArea: true,
+      elevation: 10,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
       ),
